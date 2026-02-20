@@ -9,13 +9,6 @@ pipeline {
         K8S_CREDENTIALS = 'kubeconfig'
     }
     stages {
-        stage('Debug') {
-            steps {
-                sh 'whoami'
-                sh 'ls -la /'
-                sh 'which kubectl'
-            }
-        }
         stage('Checkout') {
             steps { checkout scm }
         }
