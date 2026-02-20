@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'alpine/kubectl:1.35.1:latest'
+            image 'alpine/kubectl:1.35.1'
         }
     }
     environment {
