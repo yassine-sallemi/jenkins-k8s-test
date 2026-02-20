@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment # Nom du deployment
+spec:
+  replicas: 3 # Nombre de répliques
+  selector:
+    matchLabels:
+      app: web-app # Label des pods liés de ce deployment
+  template: # # Définition des pods
+    metadata:
+      labels:
+        app: web-app # Labels de pods par lequel deployment identifie ses pods 
+        version: v1
+    spec:
+      containers:
+      - name: web-container
+        image: httpd:2.4
+        ports:
+        - containerPort: 80
+  strategy:
+#       type: RollingUpdate # Par défault
+#       rollingUpdate:
+#         maxUnavailable: 1 # Combien de pods peuvent être indisponibles pendant la mise à jour
+#         maxSurge: 1 # Combien de pods supplémentaires peuvent être créés temporairement
+#       type: Recreate
