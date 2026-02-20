@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'alpine/kubectl:1.35.1:latest'
+        }
+    }
     environment {
         APP_NAME = 'web-deployment'
         K8S_CREDENTIALS = 'kubeconfig'
@@ -7,14 +11,6 @@ pipeline {
     stages {
         stage('Checkout') {
             steps { checkout scm }
-        }
-        stage('Add kubectl') {
-            steps {
-                echo 'Installation de kubectl...'
-                sh 'curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl'
-                sh 'chmod +x kubectl'
-                sh 'mv kubectl /usr/local/bin/'
-            }
         }
         stage('Lint YAML') {
             steps {
