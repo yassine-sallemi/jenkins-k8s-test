@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'bitnami/kubectl:latest'
+        }
+    }
     environment {
         APP_NAME = 'web-deployment'
         K8S_CREDENTIALS = 'kubeconfig'
