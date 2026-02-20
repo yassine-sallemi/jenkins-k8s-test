@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'alpine/kubectl:1.35.1'
+            args '-u root'
         }
     }
     environment {
@@ -9,6 +10,13 @@ pipeline {
         K8S_CREDENTIALS = 'kubeconfig'
     }
     stages {
+        stage('Debug') {
+            steps {
+                sh 'whoami'
+                sh 'ls -la /'
+                sh 'which kubectl'
+            }
+        }
         stage('Checkout') {
             steps { checkout scm }
         }
