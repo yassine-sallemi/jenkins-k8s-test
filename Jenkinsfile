@@ -1,8 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'alpine/kubectl:1.35.1'
-            args '-u root'
+            image 'aroundus/jenkins-kubectl:1.18.2-1.17.0-3.2.3'
         }
     }
     environment {
