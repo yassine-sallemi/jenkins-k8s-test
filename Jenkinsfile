@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker {
             image 'aroundus/jenkins-kubectl:1.18.2-1.17.0-3.2.3'
+            args '--network=host'
         }
     }
     environment {
